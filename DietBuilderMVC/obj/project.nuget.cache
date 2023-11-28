@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "L3XsmfqxEIlLCBTtYJdk2xLsEdwxGEZ7WW2xHHag0YyG2MekzpL03+BVRoM9LpT30TSBH/pdIWUBTduzPIINew==",
+  "success": true,
+  "projectFilePath": "C:\\ElevenFiftyProjects\\codingFoundations\\dotnetProjects\\DietBuilderMVC\\DietBuilderMVC\\DietBuilderMVC.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\cakel\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.4\\microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512"
+  ],
+  "logs": []
+}
