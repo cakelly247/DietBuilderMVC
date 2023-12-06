@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DietBuilder.Models.User.UserListItem>;
+
+@{
+	ViewData["Title"] = "User Index";
+}
+
+<h1>User Index</h1>
+
+@if (Model.Any())
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Id)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.FirstName)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.LastName)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.UserName)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Email)
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var user in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(ingredientItem => user.Id)
+					</td>
+					<td>
+						@Html.DisplayFor(ingredientItem => user.FirstName)
+					</td>
+					<td>
+						@Html.DisplayFor(ingredientItem => user.LastName)
+					</td>
+					<td>
+						@Html.DisplayFor(ingredientItem => user.UserName)
+					</td>
+					<td>
+						@Html.DisplayFor(ingredientItem => user.Email)
+					</td>
+					<td>
+						<a asp-action="Details" asp-route-id="@user.Id">Details</a>
+						<a asp-action="Edit" asp-route-id=@user.Id>Edit</a> |
+						<a asp-action="Delete" asp-route-id=@user.Id>Delete</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<span>There are currently no users in the database</span>
+}

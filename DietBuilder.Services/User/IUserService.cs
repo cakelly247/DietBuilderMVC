@@ -14,7 +14,7 @@ namespace DietBuilder.Services.User
 
 		Task<List<UserListItem>> GetAllUsersAsync();
 
-		Task<UserDetail> GetUserById(int id);
+		Task<UserDetail?> GetUserById(int id);
 
 		Task<bool> UpdateUserAsync(UserUpdate model);
 
