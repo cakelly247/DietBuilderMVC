@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DietBuilder.Models")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd7a136be5f577c4f48f6972e908ca3172a58a12")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e79afad123cfe678d66bf23ea606de1fa90ef35f")]
 [assembly: System.Reflection.AssemblyProductAttribute("DietBuilder.Models")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DietBuilder.Models")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

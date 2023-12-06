@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DietBuilder.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b2c11748d360b462e9cb27d33826f399f2334e03")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e79afad123cfe678d66bf23ea606de1fa90ef35f")]
 [assembly: System.Reflection.AssemblyProductAttribute("DietBuilder.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DietBuilder.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

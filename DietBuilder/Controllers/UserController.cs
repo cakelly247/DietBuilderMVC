@@ -63,6 +63,7 @@ namespace DietBuilder.Controllers
                 Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                UserName = user.UserName,
                 Email = user.Email
             };
 
@@ -83,12 +84,12 @@ namespace DietBuilder.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (!ModelState.IsValid)
-                return View();
+                return View(ModelState);
 
-            var user = _service.GetUserById(id);
+            var user = await _service.GetUserById(id);
 
             if (user is null)
                 return RedirectToAction(nameof(Index));

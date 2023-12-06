@@ -49,6 +49,7 @@ namespace DietBuilder.Services.User
                 Id = u.Id,
                 FirstName = u.FirstName,
                 LastName = u.LastName,
+                UserName = u.UserName,
                 Email = u.Email
             }).ToListAsync();
 
@@ -67,6 +68,7 @@ namespace DietBuilder.Services.User
                 Id = user.Id,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                UserName = user.UserName,
                 Email = user.Email
             };
         }

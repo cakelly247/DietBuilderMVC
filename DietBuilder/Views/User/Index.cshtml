@@ -5,6 +5,9 @@
 }
 
 <h1>User Index</h1>
+<p>
+	Make a new User <a asp-action="Create">here</a>!
+</p>
 
 @if (Model.Any())
 {
@@ -33,22 +36,22 @@
 			{
 				<tr>
 					<td>
-						@Html.DisplayFor(ingredientItem => user.Id)
+						@Html.DisplayFor(userItem => user.Id)
 					</td>
 					<td>
-						@Html.DisplayFor(ingredientItem => user.FirstName)
+						@Html.DisplayFor(userItem => user.FirstName)
 					</td>
 					<td>
-						@Html.DisplayFor(ingredientItem => user.LastName)
+						@Html.DisplayFor(userItem => user.LastName)
 					</td>
 					<td>
-						@Html.DisplayFor(ingredientItem => user.UserName)
+						@Html.DisplayFor(userItem => user.UserName)
 					</td>
 					<td>
-						@Html.DisplayFor(ingredientItem => user.Email)
+						@Html.DisplayFor(userItem => user.Email)
 					</td>
 					<td>
-						<a asp-action="Details" asp-route-id="@user.Id">Details</a>
+						<a asp-action="Details" asp-route-id="@user.Id">Details</a> |
 						<a asp-action="Edit" asp-route-id=@user.Id>Edit</a> |
 						<a asp-action="Delete" asp-route-id=@user.Id>Delete</a>
 					</td>
