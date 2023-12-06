@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using DietBuilder.Data;
 using DietBuilder.Data.Entities;
 using DietBuilder.Models.Meal;
 using DietBuilder.Models.Recipe;
+using DietBuilder.Services.Recipe;
 
 namespace DietBuilder.Services.Meal
 {
 	public class MealService : IMealService
 	{
 		private readonly DietBuilderDbContext _context;
+		private readonly IRecipeService _recipeService;
 
-		public MealService(DietBuilderDbContext context)
+		public MealService(DietBuilderDbContext context,
+						   IRecipeService recipeService)
 		{
 			_context = context;
+			_recipeService = recipeService;
 		}
 
 		public async Task<bool> CreateMealAsync(MealCreate model)
 		{
 			var meal = new MealEntity()
 			{
-				Name = model.Name
+				Name = model.Name,
+				DietId = model.DietId ?? 0
 			};
 
 			_context.Meals.Add(meal);
@@ -42,7 +42,7 @@ namespace DietBuilder.Services.Meal
 			return await _context.SaveChangesAsync() == 1;
 		}
 
-		public async Task<List<MealListItem>>? GetAllMealsAsync()
+		public async Task<List<MealListItem>> GetAllMealsAsync()
 		{
 			var meals = await _context.Meals
 				.Select(m => new MealListItem()
@@ -54,6 +54,17 @@ namespace DietBuilder.Services.Meal
 			return meals;
 		}
 
+		public Task<List<MealDetail>> GetAllMealsForDietAsync(int dietId)
+		{
+			return _context.Meals
+				.Where(m => m.DietId == dietId)
+				.Select(m => new MealDetail()
+				{
+					Id = m.Id,
+					Name = m.Name
+				}).ToListAsync();
+		}
+
 		public async Task<MealDetail?> GetMealById(int id)
 		{
 			var meal = await _context.Meals.FindAsync(id);
@@ -61,16 +72,13 @@ namespace DietBuilder.Services.Meal
 			if (meal is null)
 				return null;
 
+			var recipes = await _recipeService.GetAllRecipesForMealAsync(id);
+
 			return new MealDetail()
 			{
 				Id = meal.Id,
 				Name = meal.Name,
-				Recipes = new List<RecipeListItem>()
-				.Select(r => new RecipeListItem()
-				{
-					Id = r.Id,
-					Name = r.Name
-				}).ToList()
+				Recipes = recipes
 			};
 		}
 
@@ -81,6 +89,7 @@ namespace DietBuilder.Services.Meal
 			if (meal is null)
 				return false;
 
+			meal.Id = model.Id;
 			meal.Name = model.Name;
 
 			return await _context.SaveChangesAsync() == 1;

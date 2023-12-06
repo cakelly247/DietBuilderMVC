@@ -10,11 +10,33 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DietBuilder
 build_property.RootNamespace = DietBuilder
 build_property.ProjectDir = C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder
 build_property._RazorSourceGeneratorDebug = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Diet/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlldFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Diet/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlldFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Diet/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlldFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Diet/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlldFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Diet/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlldFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
 
 [C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
@@ -22,6 +44,74 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Ingredient/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5ncmVkaWVudFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Ingredient/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5ncmVkaWVudFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Ingredient/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5ncmVkaWVudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Ingredient/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5ncmVkaWVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Meal/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Meal/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Meal/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Meal/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Meal/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVhbFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/RecipeIngredient/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlSW5ncmVkaWVudFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/RecipeIngredient/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlSW5ncmVkaWVudFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/RecipeIngredient/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlSW5ncmVkaWVudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Recipe/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Recipe/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Recipe/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Recipe/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Recipe/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjaXBlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/ElevenFiftyProjects/codingFoundations/dotnetProjects/DietBuilderMVC/DietBuilder/Views/Shared/Error.cshtml]

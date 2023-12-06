@@ -12,3 +12,4 @@ C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuild
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Data\obj\Debug\net7.0\DietBuilder.Data.csproj.AssemblyReference.cache
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Data\bin\Debug\net7.0\DietBuilder.Data.runtimeconfig.json
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Data\obj\Debug\net7.0\DietBuilder.Data.genruntimeconfig.cache
+C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Data\obj\Debug\net7.0\DietBuilder.Data.sourcelink.json

@@ -18,6 +18,6 @@ namespace DietBuilder.Data.Entities
         [MaxLength(1000)]
         public string? Description { get; set; }
 
-        public virtual IEnumerable<MealEntity>? Meals { get; set; }
+        public List<MealEntity>? Meals { get; set; }
     }
 }

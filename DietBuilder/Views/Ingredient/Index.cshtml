@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DietBuilder.Models.Ingredient.IngredientListItem>
+
+@{
+	ViewData["Title"] = "Ingredients";
+}
+
+<h1>Ingredients</h1>
+<p>
+	<a asp-action="Create">Make a new Ingredient</a>
+</p>
+
+@if (Model.Any())
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Name)
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var ingredient in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(ingredientItem => ingredient.Name)
+					</td>
+					<td>
+						<a asp-action="Edit" asp-route-id=@ingredient.Id>Edit</a> |
+						<a asp-action="Delete" asp-route-id=@ingredient.Id>Delete</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<span>There are currently no ingredients available</span>
+}

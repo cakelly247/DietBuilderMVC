@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using DietBuilder.Data;
 using DietBuilder.Data.Entities;
 using DietBuilder.Models.Recipe;
@@ -23,7 +18,11 @@ namespace DietBuilder.Services.Recipe
 		{
 			var recipe = new RecipeEntity()
 			{
-				Name = model.Name
+				Name = model.Name,
+				MealId = model.MealId,
+				Calories = model.Calories,
+				Carbs = model.Carbs,
+				Protein = model.Protein
 			};
 
 			_context.Recipes.Add(recipe);
@@ -41,7 +40,7 @@ namespace DietBuilder.Services.Recipe
 			return await _context.SaveChangesAsync() == 1;
 		}
 
-		public async Task<List<RecipeListItem>>? GetAllRecipesAsync()
+		public async Task<List<RecipeListItem>> GetAllRecipesAsync()
 		{
 			var recipes = await _context.Recipes
 				.Select(r => new RecipeListItem()
@@ -53,6 +52,17 @@ namespace DietBuilder.Services.Recipe
 			return recipes;
 		}
 
+		public Task<List<RecipeListItem>> GetAllRecipesForMealAsync(int mealId)
+		{
+			return _context.Recipes
+				.Where(r => r.MealId == mealId)
+				.Select(r => new RecipeListItem()
+				{
+					Id = r.Id,
+					Name = r.Name
+				}).ToListAsync();
+		}
+
 		public async Task<RecipeDetail?> GetRecipeById(int id)
 		{
 			var recipe = await _context.Recipes.FindAsync(id);
@@ -62,17 +72,18 @@ namespace DietBuilder.Services.Recipe
 
 			return new RecipeDetail()
 			{
+				Id = recipe.Id,
 				Name = recipe.Name,
 				RecipeIngredients = new List<RecipeIngredientListItem>()
 				.Select(ri => new RecipeIngredientListItem()
 				{
-					IngredientId = ri.IngredientId,
-					IngredientName = ri.IngredientName,
+					Name = ri.Name,
 					QuantityOf = ri.QuantityOf
 				}).ToList(),
-				TotalCalories = recipe.TotalCalories,
-				TotalCarbs = recipe.TotalCarbs,
-				TotalProtein = recipe.TotalProtein
+				MealId = recipe.MealId ?? 0,
+				Calories = recipe.Calories,
+				Carbs = recipe.Carbs,
+				Protein = recipe.Protein
 			};
 		}
 
@@ -83,7 +94,12 @@ namespace DietBuilder.Services.Recipe
 			if (recipe is null)
 				return false;
 
+			recipe.Id = model.Id;
 			recipe.Name = model.Name;
+			recipe.MealId = model.MealId;
+			recipe.Calories = model.Calories;
+			recipe.Carbs = model.Carbs;
+			recipe.Protein = model.Protein;
 
 			return await _context.SaveChangesAsync() == 1;
 		}

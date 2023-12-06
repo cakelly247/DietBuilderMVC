@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using DietBuilder.Data;
 using DietBuilder.Data.Entities;
 using DietBuilder.Models.RecipeIngredient;
@@ -21,15 +16,19 @@ namespace DietBuilder.Services.RecipeIngredient
 
         public async Task<bool> CreateRecipeIngredientAsync(RecipeIngredientCreate model)
 		{
-			var recipeIngredient = new RecipeIngredientEntity()
-			{
-				IngredientId = model.IngredientId,
-				RecipeId = model.RecipeId,
-				QuantityOf = model.QuantityOf
-			};
+            foreach (var ingredientId in model.SelectedIngredientIds)
+            {
+				var recipeIngredient = new RecipeIngredientEntity()
+				{
+					IngredientId = ingredientId,
+					RecipeId = model.Recipe.Id,
+					QuantityOf = model.QuantityOf,
+					Unit = (UnitOfMeasure)model.UnitOfMeasure
+				};
 
-			_context.RecipeIngredients.Add(recipeIngredient);
-			return await _context.SaveChangesAsync() == 1;
+				_context.RecipeIngredients.Add(recipeIngredient);
+            }
+			return await _context.SaveChangesAsync() == model.SelectedIngredientIds.Count;
 		}
 
 		public async Task<bool> DeleteRecipeIngredientAsync(int id)
@@ -43,15 +42,25 @@ namespace DietBuilder.Services.RecipeIngredient
 			return await _context.SaveChangesAsync() == 1;
 		}
 
-		public async Task<List<RecipeIngredientListItem>?> GetAllRecipeIngredientsAsync(int recipeId)
+		public async Task<List<RecipeIngredientListItem>?> GetAllRecipeIngredientsAsync()
+		{
+			var recipeIngredients = await _context.RecipeIngredients
+				.Select(ri => new RecipeIngredientListItem()
+				{
+					Id = ri.Id,
+					QuantityOf = ri.QuantityOf
+				}).ToListAsync();
+
+			return recipeIngredients;
+		}
+
+		public async Task<List<RecipeIngredientListItem>?> GetAllIngredientsForRecipeAsync(int recipeId)
 		{
 			var recipeIngredients = await _context.RecipeIngredients
 				.Where(ri => ri.RecipeId == recipeId)
 				.Select(ri => new RecipeIngredientListItem()
 				{
 					Id = ri.Id,
-					IngredientId = ri.IngredientId,
-					IngredientName = ri.Name,
 					QuantityOf = ri.QuantityOf
 				}).ToListAsync();
 
@@ -68,10 +77,6 @@ namespace DietBuilder.Services.RecipeIngredient
 			return new RecipeIngredientDetail()
 			{
 				Id = recipeIngredient.Id,
-				IngredientId = recipeIngredient.IngredientId,
-				Name = recipeIngredient.Name,
-				RecipeId = recipeIngredient.RecipeId,
-				RecipeName = recipeIngredient.RecipeName,
 				QuantityOf = recipeIngredient.QuantityOf
 			};
 		}
@@ -83,7 +88,9 @@ namespace DietBuilder.Services.RecipeIngredient
 			if (recipeIngredient is null)
 				return false;
 
+			recipeIngredient.Id = model.Id;
 			recipeIngredient.QuantityOf = model.QuantityOf;
+
 			return await _context.SaveChangesAsync() == 1;
 		}
 	}

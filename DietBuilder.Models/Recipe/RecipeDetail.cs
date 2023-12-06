@@ -12,8 +12,9 @@ namespace DietBuilder.Models.Recipe
         public int Id { get; set; }
         public string? Name { get; set; }
         public List<RecipeIngredientListItem>? RecipeIngredients { get; set; }
-        public double TotalCalories { get; set; }
-        public double TotalCarbs { get; set; }
-        public double TotalProtein { get; set; }
+        public int MealId { get; set; }
+        public double Calories { get; set; }
+        public double Carbs { get; set; }
+        public double Protein { get; set; }
     }
 }

@@ -11,11 +11,5 @@ namespace DietBuilder.Models.Ingredient
 	{
 		[Required, MaxLength(100)]
 		public string? Name { get; set; }
-
-		public double Calories { get; set; }
-
-		public double Carbs { get; set; }
-
-		public double Protein { get; set; }
 	}
 }

@@ -9,9 +9,8 @@ namespace DietBuilder.Models.Ingredient
 {
 	public class IngredientListItem
 	{
-        [Key]
         public int Id { get; set; }
 
         public string? Name { get; set; }
-    }
+	}
 }

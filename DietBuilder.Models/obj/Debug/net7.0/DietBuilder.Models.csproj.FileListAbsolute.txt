@@ -15,3 +15,4 @@ C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuild
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\ref\DietBuilder.Models.dll
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\bin\Debug\net7.0\DietBuilder.Models.runtimeconfig.json
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\DietBuilder.Models.genruntimeconfig.cache
+C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\DietBuilder.Models.sourcelink.json

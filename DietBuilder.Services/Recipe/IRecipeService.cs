@@ -12,7 +12,9 @@ namespace DietBuilder.Services.Recipe
 	{
 		Task<bool> CreateRecipeAsync(RecipeCreate model);
 
-		Task<List<RecipeListItem>>? GetAllRecipesAsync();
+		Task<List<RecipeListItem>> GetAllRecipesAsync();
+
+		Task<List<RecipeListItem>> GetAllRecipesForMealAsync(int mealId);
 
 		Task<RecipeDetail?> GetRecipeById(int id);
 

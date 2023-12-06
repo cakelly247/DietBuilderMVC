@@ -1,0 +1,52 @@
+﻿@model DietBuilder.Models.Recipe.RecipeUpdate;
+
+@{
+	ViewData["Title"] = "Update";
+}
+
+<h1>Update information for "@Model.Name"</h1>
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Calories" class="control-label"></label>
+				<input asp-for="Calories" class="form-control" />
+				<span asp-validation-for="Calories" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Carbs" class="control-label"></label>
+				<input asp-for="Carbs" class="form-control" />
+				<span asp-validation-for="Carbs" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Protein" class="control-label"></label>
+				<input asp-for="Protein" class="form-control" />
+				<span asp-validation-for="Protein" class="text-danger"></span>
+			</div>
+			@if (Model.MealId == 0 || Model.MealId is null)
+			{
+				<div class="form-group">
+					<label asp-for="MealId" class="control-label"></label>
+					<input asp-for="MealId" class="form-control" />
+					<span asp-validation-for="MealId" class="text-danger"></span>
+				</div>
+			}
+			<div class="form-group">
+				<input type="submit" value="Update" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

@@ -13,13 +13,6 @@ namespace DietBuilder.Data.Entities
         [Key]
         public int Id { get; set; }
 
-        public string? Name {
-            get
-            {
-                return Ingredient!.Name;
-            }
-        }
-
         [ForeignKey(nameof(Ingredient))]
         public int IngredientId { get; set; }
 
@@ -28,36 +21,21 @@ namespace DietBuilder.Data.Entities
         [ForeignKey(nameof(Recipe))]
         public int RecipeId { get; set; }
 
-        public string? RecipeName {
-            get
-            {
-                return Recipe!.Name;
-            }
-        }
-
         public virtual RecipeEntity? Recipe { get; set; }
 
         public double QuantityOf { get; set; }
 
-        public double IngredientCalories {
-            get
-            {
-                return Ingredient!.Calories * QuantityOf;
-            }
-        }
+        public UnitOfMeasure Unit { get; set; }
+    }
 
-        public double IngredientCarbs {
-            get
-            {
-                return Ingredient!.Carbs * QuantityOf;
-            }
-        }
-
-		public double IngredientProtein { 
-			get
-			{
-				return Ingredient!.Protein * QuantityOf;
-			}
-		}
-	}
+    public enum UnitOfMeasure
+    {
+        None,
+        Gram,
+        Ounce,
+        Pound,
+        Cup,
+        Tbsp,
+        Tsp
+    }
 }

@@ -12,13 +12,6 @@ namespace DietBuilder.Data.Entities
         [Key]
         public int Id { get; set; }
 
-        [Required, MaxLength(100)]
         public string? Name { get; set; }
-
-        public double Calories { get; set; }
-
-        public double Carbs { get; set; }
-
-        public double Protein { get; set; }
     }
 }

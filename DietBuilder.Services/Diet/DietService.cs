@@ -1,26 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DietBuilder.Data;
 using DietBuilder.Data.Entities;
 using DietBuilder.Models.Diet;
 using DietBuilder.Models.Meal;
+using DietBuilder.Services.Meal;
+using Microsoft.EntityFrameworkCore;
 
 namespace DietBuilder.Services.Diet
 {
 	public class DietService : IDietService
 	{
 		private readonly DietBuilderDbContext _context;
+		private readonly IMealService _mealService;
 
-        public DietService(DietBuilderDbContext context)
-        {
+		public DietService(DietBuilderDbContext context, IMealService mealService)
+		{
 			_context = context;
-        }
+			_mealService = mealService;
+		}
 
-        public async Task<bool> CreateDietAsync(DietCreate model)
+		public async Task<DietDetail?> CreateDietAsync(DietCreate model)
 		{
 			DietEntity diet = new DietEntity()
 			{
@@ -29,7 +28,20 @@ namespace DietBuilder.Services.Diet
 			};
 
 			_context.Diets.Add(diet);
-			return await _context.SaveChangesAsync() == 1;
+			await _context.SaveChangesAsync();
+
+			return new DietDetail()
+			{
+				Id = diet.Id,
+				Name = diet.Name,
+				Description = diet.Description,
+				Meals = new List<MealListItem>()
+				.Select(m => new MealListItem()
+				{
+					Id = m.Id,
+					Name = m.Name
+				}).ToList()
+			};
 		}
 
 		public async Task<bool> DeleteDietAsync(int id)
@@ -57,23 +69,40 @@ namespace DietBuilder.Services.Diet
 
 		public async Task<DietDetail?> GetDietById(int id)
 		{
-			var diet = await _context.Diets.FindAsync(id);
+			var meals = await _mealService.GetAllMealsForDietAsync(id);
+			var diet = await _context.Diets
+				.Select(d => new DietDetail()
+				{
+					Id = d.Id,
+					Name = d.Name,
+					Description = d.Description,
+					Meals = meals
+					.Select(m => new MealListItem()
+					{
+						Id = m.Id,
+						Name = m.Name
+					}).ToList()
+				})
+				.FirstOrDefaultAsync(d => d.Id == id);
+				//.ToListAsync();
 
 			if (diet is null)
 				return null;
 
-			return new DietDetail()
-			{
-				Id = diet.Id,
-				Name = diet.Name,
-				Description = diet.Description,
-				Meals = new List<MealListItem>()
-				.Select(m => new MealListItem()
-				{
-					Id = m.Id,
-					Name = m.Name
-				}).ToList()
-			};
+			return diet;
+
+			//return new DietDetail()
+			//{
+			//	Id = diet.Id,
+			//	Name = diet.Name,
+			//	Description = diet.Description,
+			//	Meals = new List<MealListItem>()
+			//	.Select(m => new MealListItem()
+			//	{
+			//		Id = m.Id,
+			//		Name = m.Name
+			//	}).ToList()
+			//};
 		}
 
 		public async Task<bool> UpdateDietAsync(DietUpdate model)
@@ -83,6 +112,7 @@ namespace DietBuilder.Services.Diet
 			if (diet is null)
 				return false;
 
+			diet.Id = model.Id;
 			diet.Name = model.Name;
 			diet.Description = model.Description;
 

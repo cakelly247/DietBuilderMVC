@@ -11,11 +11,11 @@ namespace DietBuilder.Data.Entities
 {
 	public class UserEntity : IdentityUser<int>
 	{
-        [ForeignKey(nameof(Diet))]
-        public int DietId { get; set; }
+        //[ForeignKey(nameof(Diet))]
+        //public int DietId { get; set; }
 
-        public virtual DietEntity? Diet { get; set; }
+        //public virtual DietEntity? Diet { get; set; }
 
-        public virtual IEnumerable<MealEntity>? Meals { get; set; }
+        //public virtual IEnumerable<MealEntity>? Meals { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DietBuilder.Data.Entities;
 using DietBuilder.Models.Diet;
 using DietBuilder.Models.Ingredient;
 
@@ -10,7 +11,7 @@ namespace DietBuilder.Services.Diet
 {
 	public interface IDietService
 	{
-		Task<bool> CreateDietAsync(DietCreate model);
+		Task<DietDetail?> CreateDietAsync(DietCreate model);
 
 		Task<List<DietListItem>> GetAllDietsAsync();
 
