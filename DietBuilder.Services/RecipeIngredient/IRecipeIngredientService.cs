@@ -8,18 +8,18 @@ using DietBuilder.Models.RecipeIngredient;
 
 namespace DietBuilder.Services.RecipeIngredient
 {
-	public interface IRecipeIngredientService
-	{
-		Task<bool> CreateRecipeIngredientAsync(RecipeIngredientCreate model);
+    public interface IRecipeIngredientService
+    {
+        Task<bool> CreateRecipeIngredientsAsync(RecipeIngredientCreate model);
 
-		Task<List<RecipeIngredientListItem>?> GetAllRecipeIngredientsAsync();
+        Task<List<RecipeIngredientListItem>?> GetAllRecipeIngredientsAsync();
 
-		Task<List<RecipeIngredientListItem>?> GetAllIngredientsForRecipeAsync(int recipeId);
+        Task<List<RecipeIngredientListItem>?> GetAllIngredientsForRecipeAsync(int recipeId);
 
-		Task<RecipeIngredientDetail?> GetRecipeIngredientById(int id);
+        Task<RecipeIngredientDetail?> GetRecipeIngredientById(int id);
 
-		Task<bool> UpdateRecipeIngredientAsync(RecipeIngredientUpdate model);
+        Task<bool> UpdateRecipeIngredientAsync(RecipeIngredientUpdate model);
 
-		Task<bool> DeleteRecipeIngredientAsync(int id);
-	}
+        Task<bool> DeleteRecipeIngredientAsync(int id);
+    }
 }

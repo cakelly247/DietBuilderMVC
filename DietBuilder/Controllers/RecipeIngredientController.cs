@@ -15,85 +15,88 @@ namespace DietBuilder.Controllers
 
 		private readonly IRecipeService _recipeService;
 
-        public RecipeIngredientController(IRecipeIngredientService service,
-									      IIngredientService ingredientService,
+		public RecipeIngredientController(IRecipeIngredientService service,
+										  IIngredientService ingredientService,
 										  IRecipeService recipeService)
-        {
+		{
 			_service = service;
 			_ingredientService = ingredientService;
 			_recipeService = recipeService;
-        }
-
-  //      public async Task<IActionResult> Index()
-		//{
-		//	var recipeIngredients = await _service.GetAllRecipeIngredientsAsync();
-		//	return View(recipeIngredients);
-		//}
-
-		public async Task<IActionResult> Index(int recipeId)
-		{
-			if (!ModelState.IsValid)
-				return View(ModelState);
-
-			var recipe = await _recipeService.GetRecipeById(recipeId);
-
-			//if (recipe is null)
-			//	return RedirectToAction(nameof(Index));
-
-			var recipeIngredients = recipe!.RecipeIngredients;
-
-			return View(recipeIngredients);
 		}
 
-		[ActionName("Details")]
-		public async Task<IActionResult> RecipeIngredient(int id)
-		{
-			if (!ModelState.IsValid)
-				return View(ModelState);
-
-			var recipeIngredient = await _service.GetRecipeIngredientById(id);
-
-			if (recipeIngredient is null)
-				return RedirectToAction(nameof(Index));
-
-			return View(recipeIngredient);
-		}
+		// public async Task<IActionResult> Index(int recipeId)
+		// {
+		// 	if (!ModelState.IsValid)
+		// 		return View();
+		//
+		// 	var recipe = await _recipeService.GetRecipeById(recipeId);
+		//
+		// 	//if (recipe is null)
+		// 	//	return RedirectToAction(nameof(Index));
+		//
+		// 	var recipeIngredients = recipe!.RecipeIngredients;
+		//
+		// 	return View(recipeIngredients);
+		// }
+		//
+		// [ActionName("Details")]
+		// public async Task<IActionResult> RecipeIngredient(int id)
+		// {
+		// 	if (!ModelState.IsValid)
+		// 		return View();
+		//
+		// 	var recipeIngredient = await _service.GetRecipeIngredientById(id);
+		//
+		// 	if (recipeIngredient is null)
+		// 		return RedirectToAction(nameof(Index));
+		//
+		// 	return View(recipeIngredient);
+		// }
 
 		[HttpGet("Recipe/{recipeId}/Ingredients/Create")]
 		public async Task<IActionResult> Create(int? recipeId)
 		{
 			if (recipeId is null || recipeId == 0)
-				return View(new RecipeCreate());
+				return View(new RecipeIngredientCreate());
 
+			var ingredients = (await _ingredientService.GetAllIngredientsAsync())
+				.Select(i => new IngredientChecked()
+				{
+					Name = i.Name,
+					Id = i.Id,
+					IsSelected = false
+				})
+				.ToList();
 			var model = new RecipeIngredientCreate()
 			{
-				Ingredients = await _ingredientService.GetAllIngredientsAsync(),
+				Ingredients = ingredients,
 				Recipe = await _recipeService.GetRecipeById(recipeId ?? 0)
 			};
 
-			return View(model);  
+			return View(model);
 		}
 
 		[HttpPost("Recipe/{recipeId}/Ingredients/Create")]
-		public async Task<IActionResult> Create(RecipeIngredientCreate model)
+		public async Task<IActionResult> Create(RecipeIngredientCreate model, int? recipeId)
 		{
 			if (!ModelState.IsValid)
-				return View(ModelState);
+				return View(model);
 
-			await _service.CreateRecipeIngredientAsync(model);
+			model.RecipeId = recipeId ?? 0;
+			await _service.CreateRecipeIngredientsAsync(model);
 
-			return RedirectToAction(nameof(Index));
+			return RedirectToAction("Details", "Recipe", new { id = model.RecipeId });
 		}
 
 		public async Task<IActionResult> Edit(int id)
 		{
 			if (!ModelState.IsValid)
-				return View(ModelState);
+				return View();
 
 			var recipeIngredient = await _service.GetRecipeIngredientById(id);
 
 			if (recipeIngredient is null)
-				return RedirectToAction(nameof(Index));
+				return View();
 
 			var recipeIngredientEdit = new RecipeIngredientUpdate()
 			{
@@ -104,42 +107,15 @@ namespace DietBuilder.Controllers
 			return View(recipeIngredientEdit);
 		}
 
-		[HttpPost]
-		public async Task<IActionResult> Edit(RecipeIngredientUpdate model)
+		[HttpPost("Recipe/{recipeId}/Ingredient/{id}/delete")]
+		public async Task<IActionResult> Delete(int? recipeId, int id)
 		{
 			if (!ModelState.IsValid)
-				return View(ModelState);
+				return View();
 
-			var recipeIngredient = await _service.UpdateRecipeIngredientAsync(model);
+			await _service.DeleteRecipeIngredientAsync(id);
 
-			if (!recipeIngredient)
-				return RedirectToAction(nameof(Index));
-
-			return RedirectToAction("Details", new { id = model.Id });
-		}
-
-		public async Task<IActionResult> Delete(int id)
-		{
-			if (!ModelState.IsValid)
-				return View(ModelState);
-
-			var recipeIngredient = await _service.GetRecipeIngredientById(id);
-
-			if (recipeIngredient is null)
-				return RedirectToAction(nameof(Index));
-
-			return View(recipeIngredient);
-		}
-
-		[HttpPost]
-		public async Task<IActionResult> Delete(RecipeIngredientDetail model)
-		{
-			if (!ModelState.IsValid)
-				return View(ModelState);
-
-			await _service.DeleteRecipeIngredientAsync(model.Id);
-
-			return RedirectToAction(nameof(Index));
+			return RedirectToAction("Details", "Recipe", new { id = recipeId });
 		}
 	}
 }

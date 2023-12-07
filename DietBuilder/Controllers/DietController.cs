@@ -9,12 +9,12 @@ namespace DietBuilder.Controllers
 	{
 		private readonly IDietService _service;
 
-        public DietController(IDietService service)
-        {
+		public DietController(IDietService service)
+		{
 			_service = service;
-        }
+		}
 
-        public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index()
 		{
 			var diets = await _service.GetAllDietsAsync();
 			return View(diets);
@@ -50,7 +50,7 @@ namespace DietBuilder.Controllers
 
 			return View("Details", diet);
 		}
-	
+
 		public async Task<IActionResult> Edit(int id)
 		{
 			if (!ModelState.IsValid)
@@ -96,7 +96,7 @@ namespace DietBuilder.Controllers
 		public async Task<IActionResult> Delete(DietDetail model)
 		{
 			if (!ModelState.IsValid)
-				return View(ModelState);
+				return View();
 
 			await _service.DeleteDietAsync(model.Id);
 			return RedirectToAction(nameof(Index));

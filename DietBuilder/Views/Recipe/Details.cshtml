@@ -1,56 +1,70 @@
 ﻿@model DietBuilder.Models.Recipe.RecipeDetail;
 
 @{
-	ViewData["Title"] = @Model.Name;
+    ViewData["Title"] = @Model.Name;
 }
 
-<h1>@Model.Name</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
 
+            <h1>@Model.Name</h1>
 
+            <hr/>
 
-<h3>Ingredients</h3>
+            <h3>Ingredients</h3>
 
-@if (Model.RecipeIngredients.Any())
-{
-	<span>
-		<a href="/Recipe/@Model.Id/Ingredients/Create">Add ingredients to @Model.Name here!</a>
-	</span>
-	@*
-		<table class="table">
-		<thead>
-			<tr>
-				<th>
-					@Html.DisplayNameFor(model => model.Name)
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var recipeIngredient in Model.RecipeIngredients)
-			{
-				<tr>
-					<td>
-						@Html.DisplayFor(Item => recipeIngredient.Name)
-					</td>
-					<td>
-						<a asp-action="Edit" asp-controller="RecipeIngredient" asp-route-id=@recipeIngredient.Id>Change quantity</a> |
-						<a asp-action="Delete" asp-controller="RecipeIngredient" asp-route-id=@recipeIngredient.Id>Remove</a>
-					</td>
-				</tr>
-			}
-		</tbody>
-	</table>
-	*@
-	<ul>
-		@foreach (var recipeIngredient in Model.RecipeIngredients)
-		{
-			<li>@recipeIngredient.QuantityOf @recipeIngredient.Name</li>
-		}
-	</ul>
-}
-else
-{
-	<span>
-		There are currently no ingredients in this recipe.
-		<a href="/Recipe/@Model.Id/Ingredients/Create">Click here to add some!</a>
-	</span>
-}
+            <span>
+                <a href="/Recipe/@Model.Id/Ingredients/Create">Add ingredients to @Model.Name here!</a>
+            </span>
+
+            <br/>
+
+            @if (Model.RecipeIngredients.Any())
+            {
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            Quantity
+                        </th>
+                        <th>
+                            Unit
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var recipeIngredient in Model.RecipeIngredients)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(Item => recipeIngredient.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(Item => recipeIngredient.QuantityOf)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(Item => recipeIngredient.Unit)
+                            </td>
+                            <td>
+                                <form action="/Recipe/@Model.Id/ingredient/@recipeIngredient.Id/delete" method="post">
+                                    <input type="submit" value="Remove" class="btn btn-link" />
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <span>
+                    There are currently no ingredients in this recipe.
+                </span>
+            }
+        </div>
+    </div>
+</div>
