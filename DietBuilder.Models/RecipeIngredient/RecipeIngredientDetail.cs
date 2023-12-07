@@ -7,9 +7,11 @@ using DietBuilder.Data.Entities;
 
 namespace DietBuilder.Models.RecipeIngredient
 {
-	public class RecipeIngredientDetail
-	{
+    public class RecipeIngredientDetail
+    {
         public int Id { get; set; }
+
+        public int RecipeId { get; set; }
 
         public IngredientEntity Ingredient { get; set; }
 

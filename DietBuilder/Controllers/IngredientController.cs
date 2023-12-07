@@ -9,28 +9,14 @@ namespace DietBuilder.Controllers
 	{
 		private readonly IIngredientService _service;
 
-        public IngredientController(IIngredientService service)
-        {
+		public IngredientController(IIngredientService service)
+		{
 			_service = service;
-        }
-        public async Task<IActionResult> Index()
+		}
+		public async Task<IActionResult> Index()
 		{
 			List<IngredientListItem> ingredients = await _service.GetAllIngredientsAsync();
 			return View(ingredients);
-		}
-
-		[ActionName("Details")]
-		public async Task<IActionResult> Ingredient(int id)
-		{
-			if (!ModelState.IsValid)
-				return View();
-
-			var ingredient = await _service.GetIngredientById(id);
-
-			if (ingredient is null)
-				return RedirectToAction(nameof(Index));
-
-			return View(ingredient);
 		}
 
 		public IActionResult Create()
@@ -42,7 +28,7 @@ namespace DietBuilder.Controllers
 		public async Task<IActionResult> Create(IngredientCreate model)
 		{
 			if (!ModelState.IsValid)
-				return View(ModelState);
+				return View();
 
 			await _service.CreateIngredientAsync(model);
 
@@ -72,7 +58,7 @@ namespace DietBuilder.Controllers
 		public async Task<IActionResult> Edit(IngredientUpdate model)
 		{
 			if (!ModelState.IsValid)
-				return View(ModelState);
+				return View();
 
 			var ingredient = await _service.UpdateIngredientAsync(model);
 
@@ -82,12 +68,12 @@ namespace DietBuilder.Controllers
 			return RedirectToAction(nameof(Index));
 		}
 
-		public IActionResult Delete(int id)
+		public async Task<IActionResult> Delete(int id)
 		{
 			if (!ModelState.IsValid)
 				return View();
 
-			var ingredient = _service.GetIngredientById(id);
+			var ingredient = await _service.GetIngredientById(id);
 
 			if (ingredient is null)
 				return RedirectToAction(nameof(Index));
@@ -99,7 +85,7 @@ namespace DietBuilder.Controllers
 		public async Task<IActionResult> Delete(IngredientDetail model)
 		{
 			if (!ModelState.IsValid)
-				return View(ModelState);
+				return View();
 
 			await _service.DeleteIngredientAsync(model.Id);
 
