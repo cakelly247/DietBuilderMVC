@@ -83,6 +83,7 @@ namespace DietBuilder.Services.User
             user.Id = model.Id;
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
+            user.UserName = model.UserName;
             user.Email = model.Email;
 
             return await _context.SaveChangesAsync() == 1;

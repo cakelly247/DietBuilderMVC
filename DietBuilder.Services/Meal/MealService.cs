@@ -91,6 +91,7 @@ namespace DietBuilder.Services.Meal
 
 			meal.Id = model.Id;
 			meal.Name = model.Name;
+			meal.DietId = model.DietId;
 
 			return await _context.SaveChangesAsync() == 1;
 		}

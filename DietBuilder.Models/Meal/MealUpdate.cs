@@ -10,5 +10,6 @@ namespace DietBuilder.Models.Meal
 	{
         public int Id { get; set; }
         public string? Name { get; set; }
+        public int? DietId { get; set; }
     }
 }

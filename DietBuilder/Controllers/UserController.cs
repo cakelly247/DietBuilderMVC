@@ -100,9 +100,6 @@ namespace DietBuilder.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(UserDetail model)
         {
-            if (!ModelState.IsValid)
-                return View(ModelState);
-
             await _service.DeleteUserAsync(model.Id);
 
             return RedirectToAction(nameof(Index));
