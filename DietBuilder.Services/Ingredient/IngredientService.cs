@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using DietBuilder.Data;
 using DietBuilder.Data.Entities;
 using DietBuilder.Models.Ingredient;
@@ -23,10 +18,7 @@ namespace DietBuilder.Services.Ingredient
 		{
 			var ingredient = new IngredientEntity()
 			{
-				Name = model.Name,
-				Calories = model.Calories,
-				Carbs = model.Carbs,
-				Protein = model.Protein
+				Name = model.Name
 			};
 
 			_context.Ingredients.Add(ingredient);
@@ -66,10 +58,7 @@ namespace DietBuilder.Services.Ingredient
 			return new IngredientDetail()
 			{
 				Id = ingredient.Id,
-				Name = ingredient.Name,
-				Calories = ingredient.Calories,
-				Carbs = ingredient.Carbs,
-				Protein = ingredient.Protein
+				Name = ingredient.Name
 			};
 		}
 
@@ -80,10 +69,8 @@ namespace DietBuilder.Services.Ingredient
 			if (ingredient is null)
 				return false;
 
+			ingredient.Id = model.Id;
 			ingredient.Name = model.Name;
-			ingredient.Calories = model.Calories;
-			ingredient.Carbs = model.Carbs;
-			ingredient.Protein = model.Protein;
 
 			return await _context.SaveChangesAsync() == 1;
 		}

@@ -52,19 +52,8 @@ namespace DietBuilder.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<double>("Calories")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Carbs")
-                        .HasColumnType("float");
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<double>("Protein")
-                        .HasColumnType("float");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -82,19 +71,17 @@ namespace DietBuilder.Data.Migrations
                     b.Property<int?>("DietEntityId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("DietId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("UserEntityId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("DietEntityId");
-
-                    b.HasIndex("UserEntityId");
 
                     b.ToTable("Meals");
                 });
@@ -107,8 +94,25 @@ namespace DietBuilder.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<double>("Calories")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Carbs")
+                        .HasColumnType("float");
+
                     b.Property<int?>("MealEntityId")
                         .HasColumnType("int");
+
+                    b.Property<int?>("MealId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<double>("Protein")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -134,6 +138,9 @@ namespace DietBuilder.Data.Migrations
                     b.Property<int>("RecipeId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Unit")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IngredientId");
@@ -157,14 +164,20 @@ namespace DietBuilder.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DietId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -194,11 +207,10 @@ namespace DietBuilder.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DietId");
 
                     b.ToTable("Users");
                 });
@@ -208,10 +220,6 @@ namespace DietBuilder.Data.Migrations
                     b.HasOne("DietBuilder.Data.Entities.DietEntity", null)
                         .WithMany("Meals")
                         .HasForeignKey("DietEntityId");
-
-                    b.HasOne("DietBuilder.Data.Entities.UserEntity", null)
-                        .WithMany("Meals")
-                        .HasForeignKey("UserEntityId");
                 });
 
             modelBuilder.Entity("DietBuilder.Data.Entities.RecipeEntity", b =>
@@ -240,17 +248,6 @@ namespace DietBuilder.Data.Migrations
                     b.Navigation("Recipe");
                 });
 
-            modelBuilder.Entity("DietBuilder.Data.Entities.UserEntity", b =>
-                {
-                    b.HasOne("DietBuilder.Data.Entities.DietEntity", "Diet")
-                        .WithMany()
-                        .HasForeignKey("DietId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Diet");
-                });
-
             modelBuilder.Entity("DietBuilder.Data.Entities.DietEntity", b =>
                 {
                     b.Navigation("Meals");
@@ -264,11 +261,6 @@ namespace DietBuilder.Data.Migrations
             modelBuilder.Entity("DietBuilder.Data.Entities.RecipeEntity", b =>
                 {
                     b.Navigation("RecipeIngredients");
-                });
-
-            modelBuilder.Entity("DietBuilder.Data.Entities.UserEntity", b =>
-                {
-                    b.Navigation("Meals");
                 });
 #pragma warning restore 612, 618
         }

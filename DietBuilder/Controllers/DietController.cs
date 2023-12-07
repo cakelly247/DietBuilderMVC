@@ -14,29 +14,31 @@ namespace DietBuilder.Controllers
 			_service = service;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
 		{
-			var diets = _service.GetAllDietsAsync();
+			var diets = await _service.GetAllDietsAsync();
 			return View(diets);
 		}
 
+		[Route("Create")]
 		public IActionResult Create()
 		{
 			return View();
 		}
 
-		[HttpPost]
+		[HttpPost("Create")]
 		public async Task<IActionResult> Create(DietCreate model)
 		{
 			if (!ModelState.IsValid)
 				return View(model);
 
-			await _service.CreateDietAsync(model);
-			return RedirectToAction(nameof(Index));
+			var diet = await _service.CreateDietAsync(model);
+			return RedirectToAction("Details", new { id = diet.Id });
 		}
 
+		[Route("[controller]/{id}")]
 		[ActionName("Details")]
-		public async Task<IActionResult> Diet(int id)
+		public async Task<IActionResult> Index(int id)
 		{
 			if (!ModelState.IsValid)
 				return View();
@@ -46,9 +48,9 @@ namespace DietBuilder.Controllers
 			if (diet is null)
 				return RedirectToAction(nameof(Index));
 
-			return View(diet);
+			return View("Details", diet);
 		}
-
+	
 		public async Task<IActionResult> Edit(int id)
 		{
 			if (!ModelState.IsValid)
@@ -69,7 +71,7 @@ namespace DietBuilder.Controllers
 			return View(dietUpdate);
 		}
 
-		[HttpPut]
+		[HttpPost]
 		public async Task<IActionResult> Edit(DietUpdate model)
 		{
 			if (!ModelState.IsValid)
@@ -77,19 +79,20 @@ namespace DietBuilder.Controllers
 
 			var diet = await _service.UpdateDietAsync(model);
 
-			if (diet is false)
+			if (!diet)
 				return RedirectToAction(nameof(Index));
 
 			return RedirectToAction("Details", new { id = model.Id });
 		}
 
-		public IActionResult Delete(int id)
+
+		public async Task<IActionResult> Delete(int id)
 		{
-			var diet = _service.GetDietById(id);
+			var diet = await _service.GetDietById(id);
 			return View(diet);
 		}
 
-		[HttpDelete]
+		[HttpPost]
 		public async Task<IActionResult> Delete(DietDetail model)
 		{
 			if (!ModelState.IsValid)

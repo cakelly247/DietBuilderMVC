@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -11,11 +12,15 @@ namespace DietBuilder.Data.Entities
 {
 	public class UserEntity : IdentityUser<int>
 	{
-        [ForeignKey(nameof(Diet))]
-        public int DietId { get; set; }
+        [Key]
+        public int Id { get; set; }
 
-        public virtual DietEntity? Diet { get; set; }
+        public string FirstName { get; set; }
 
-        public virtual IEnumerable<MealEntity>? Meals { get; set; }
+        public string LastName { get; set; }
+
+        public string UserName { get; set; }
+
+        public string Email { get; set; }
     }
 }

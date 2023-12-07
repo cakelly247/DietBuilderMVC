@@ -9,8 +9,9 @@ namespace DietBuilder.Models.RecipeIngredient
 	public class RecipeIngredientListItem
 	{
         public int Id { get; set; }
-        public int IngredientId { get; set; }
-        public string? IngredientName { get; set; }
+
+        public string? Name { get; set; }
+
         public double QuantityOf { get; set; }
     }
 }

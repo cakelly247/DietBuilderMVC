@@ -1,0 +1,52 @@
+﻿@model DietBuilder.Models.Recipe.RecipeCreate;
+
+@{
+	ViewData["Title"] = "Create a Recipe";
+}
+
+@if (Model.Meal is null)
+{
+	<h1>Create a new Recipe</h1>
+}
+else
+{
+	<h1>Make a Recipe for "@Model.Meal.Name"</h1>
+}
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Create">
+			@Html.HiddenFor(r => r.MealId, new { Value = Model.Meal?.Id })
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group">
+				<label asp-for="Name" class="control-label">Recipe Name</label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Calories" class="control-label">Enter the amount of calories per serving</label>
+				<input asp-for="Calories" class="form-control" />
+				<span asp-validation-for="Calories" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Carbs" class="control-label">Enter the amount of carbs per serving (in grams)</label>
+				<input asp-for="Carbs" class="form-control" />
+				<span asp-validation-for="Carbs" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Protein" class="control-label">Enter the amount of protein per serving (in grams)</label>
+				<input asp-for="Protein" class="form-control" />
+				<span asp-validation-for="Protein" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

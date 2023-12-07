@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DietBuilder.Models.Diet.DietListItem>
+
+@{
+	ViewData["Title"] = "Diets";
+}
+
+<h1>Diets</h1>
+<p>
+	<a asp-action="Create">Make a new Diet</a>
+</p>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Name)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var diet in Model)
+		{
+			<tr>
+				<td>
+					@if (Model.Any())
+					{
+						@Html.DisplayFor(dietItem => diet.Name)
+					}
+					else
+					{
+						<span>There are currently no diets available</span>
+					}
+				</td>
+				<td>
+					<a asp-action="Details" asp-route-id =@diet.Id>Details</a> |
+					<a asp-action="Edit" asp-route-id =@diet.Id>Edit</a> |
+					<a asp-action="Delete" asp-route-id=@diet.Id>Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

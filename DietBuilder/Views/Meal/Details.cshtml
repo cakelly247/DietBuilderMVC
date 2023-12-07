@@ -1,0 +1,49 @@
+﻿@model DietBuilder.Models.Meal.MealDetail;
+
+@{
+	ViewData["Title"] = @Model.Name;
+}
+
+<h1>@Model.Name</h1>
+
+
+
+<h3>Recipes</h3>
+
+@if (Model.Recipes.Any())
+{
+	<span>
+		Add another recipe <a href="/Meal/@Model.Id/Recipe/Create">here</a>!
+	</span>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Name)
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var recipe in Model.Recipes)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(Item => recipe.Name)
+					</td>
+					<td>
+						<a asp-action="Details" asp-controller="Recipe" asp-route-id=@recipe.Id>Details</a> |
+						<a asp-action="Edit" asp-controller="Recipe" asp-route-id=@recipe.Id>Edit</a> |
+						<a asp-action="Delete" asp-controller="Recipe" asp-route-id=@recipe.Id>Delete</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+else
+{
+	<span>
+		There are currently no recipes available.
+		<a href="/Meal/@Model.Id/Recipe/Create">Click here to add one!</a>
+	</span>
+}

@@ -12,7 +12,9 @@ namespace DietBuilder.Services.RecipeIngredient
 	{
 		Task<bool> CreateRecipeIngredientAsync(RecipeIngredientCreate model);
 
-		Task<List<RecipeIngredientListItem>?> GetAllRecipeIngredientsAsync(int recipeId);
+		Task<List<RecipeIngredientListItem>?> GetAllRecipeIngredientsAsync();
+
+		Task<List<RecipeIngredientListItem>?> GetAllIngredientsForRecipeAsync(int recipeId);
 
 		Task<RecipeIngredientDetail?> GetRecipeIngredientById(int id);
 

@@ -12,7 +12,9 @@ namespace DietBuilder.Services.Meal
 	{
 		Task<bool> CreateMealAsync(MealCreate model);
 
-		Task<List<MealListItem>>? GetAllMealsAsync();
+		Task<List<MealListItem>> GetAllMealsAsync();
+
+		Task<List<MealDetail>> GetAllMealsForDietAsync(int dietId);
 
 		Task<MealDetail?> GetMealById(int id);
 

@@ -1,0 +1,58 @@
+﻿@model DietBuilder.Models.User.UserDetail;
+
+@{
+	ViewData["Title"] = "User Information";
+}
+
+<h1>User Details</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Id)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.FirstName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.LastName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.UserName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Email)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				@Html.DisplayFor(ingredientItem => Model.Id)
+			</td>
+			<td>
+				@Html.DisplayFor(ingredientItem => Model.FirstName)
+			</td>
+			<td>
+				@Html.DisplayFor(ingredientItem => Model.LastName)
+			</td>
+			<td>
+				@Html.DisplayFor(ingredientItem => Model.UserName)
+			</td>
+			<td>
+				@Html.DisplayFor(ingredientItem => Model.Email)
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div>
+	<a asp-action="Edit" asp-route-id=@Model.Id>Edit</a> |
+	<a asp-action="Delete" asp-route-id=@Model.Id>Delete</a>
+</div>
+
+<footer>
+	<a asp-action="Index">Back to List</a>
+</footer>
+
