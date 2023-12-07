@@ -23,7 +23,7 @@ namespace DietBuilder.Controllers
 			return View(meals);
 		}
 
-		[Route("[controller]/{id}")]
+		[HttpGet("[controller]/{id}")]
 		[ActionName("Details")]
 		public async Task<IActionResult> Meal(int id)
 		{
@@ -56,9 +56,12 @@ namespace DietBuilder.Controllers
 		public async Task<IActionResult> Create(MealCreate model)
 		{
 			if (!ModelState.IsValid)
-				return View(ModelState);
+				return View();
 
 			await _service.CreateMealAsync(model);
+
+			if (model.DietId > 0)
+				return RedirectToAction("Details", "Diet", new { id = model.DietId });
 
 			return RedirectToAction(nameof(Index));
 		}
@@ -86,7 +89,7 @@ namespace DietBuilder.Controllers
 		public async Task<IActionResult> Edit(MealUpdate model)
 		{
 			if (!ModelState.IsValid)
-				return View(ModelState);
+				return View();
 
 			var meal = await _service.UpdateMealAsync(model);
 
@@ -99,7 +102,7 @@ namespace DietBuilder.Controllers
 		public async Task<IActionResult> Delete(int id)
 		{
 			if (!ModelState.IsValid)
-				return View(ModelState);
+				return View();
 
 			var meal = await _service.GetMealById(id);
 
@@ -113,7 +116,7 @@ namespace DietBuilder.Controllers
 		public async Task<IActionResult> Delete(MealDetail model)
 		{
 			if (!ModelState.IsValid)
-				return View(ModelState);
+				return View();
 
 			await _service.DeleteMealAsync(model.Id);
 

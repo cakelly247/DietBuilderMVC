@@ -1,49 +1,57 @@
 ﻿@model DietBuilder.Models.Diet.DietDetail;
 
 @{
-	ViewData["Title"] = @Model.Name;
+    ViewData["Title"] = @Model.Name;
 }
 
-<h1>@Model.Name</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>@Model.Name</h1>
 
-<h5>@Model.Description</h5>
+            <h5>@Model.Description</h5>
 
-<h3>Diet Meals</h3>
+            <hr/>
 
-@if (Model.Meals.Any())
-{
-	<span>
-		Add another meal <a href="/Diet/@Model.Id/Meal/Create">here</a>!
-	</span>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>
-					@Html.DisplayNameFor(model => model.Name)
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var meal in Model.Meals)
-			{
-				<tr>
-					<td>
-						@Html.DisplayFor(Item => meal.Name)
-					</td>
-				 	<td>
-						<a asp-action="Details" asp-controller="Meal" asp-route-id=@meal.Id>Details</a> |
-						<a asp-action="Edit" asp-controller="Meal" asp-route-id=@meal.Id>Edit</a> |
-						<a asp-action="Delete" asp-controller="Meal" asp-route-id=@meal.Id>Delete</a>
-					</td>
-				</tr>
-			}
-		</tbody>
-	</table>
-}
-else
-{
-	<span>
-		There are currently no meals available. 
-		<a href="/Diet/@Model.Id/Meal/Create">Click here to add one!</a>
-	</span>
-}
+            <h3>Meals</h3>
+
+            @if (Model.Meals.Any())
+            {
+                <span>
+                    Add another meal <a href="/Diet/@Model.Id/Meal/Create">here</a>!
+                </span>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var meal in Model.Meals)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(Item => meal.Name)
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-controller="Meal" asp-route-id=@meal.Id>Details</a> |
+                                <a asp-action="Edit" asp-controller="Meal" asp-route-id=@meal.Id>Edit</a> |
+                                <a asp-action="Delete" asp-controller="Meal" asp-route-id=@meal.Id>Delete</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <span>
+                    You haven't added any meals to this diet yet.
+                    <a href="/Diet/@Model.Id/Meal/Create">Click here to add one!</a>
+                </span>
+            }
+        </div>
+    </div>
+</div>

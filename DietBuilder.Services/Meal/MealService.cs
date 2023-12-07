@@ -78,7 +78,10 @@ namespace DietBuilder.Services.Meal
 			{
 				Id = meal.Id,
 				Name = meal.Name,
-				Recipes = recipes
+				Recipes = recipes,
+				TotalCalories = recipes.Sum(r => r.Calories),
+				TotalCarbs = recipes.Sum(r => r.Carbs),
+				TotalProtein = recipes.Sum(r => r.Protein)
 			};
 		}
 

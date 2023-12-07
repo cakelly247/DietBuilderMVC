@@ -1,4 +1,5 @@
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\bin\Debug\net7.0\DietBuilder.Models.deps.json
+C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\bin\Debug\net7.0\DietBuilder.Models.runtimeconfig.json
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\bin\Debug\net7.0\DietBuilder.Models.dll
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\bin\Debug\net7.0\DietBuilder.Models.pdb
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\bin\Debug\net7.0\DietBuilder.Data.dll
@@ -8,11 +9,10 @@ C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuild
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\DietBuilder.Models.AssemblyInfoInputs.cache
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\DietBuilder.Models.AssemblyInfo.cs
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\DietBuilder.Models.csproj.CoreCompileInputs.cache
+C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\DietBuilder.Models.sourcelink.json
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\DietBuilder.Models.csproj.CopyComplete
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\DietBuilder.Models.dll
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\refint\DietBuilder.Models.dll
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\DietBuilder.Models.pdb
-C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\ref\DietBuilder.Models.dll
-C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\bin\Debug\net7.0\DietBuilder.Models.runtimeconfig.json
 C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\DietBuilder.Models.genruntimeconfig.cache
-C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\DietBuilder.Models.sourcelink.json
+C:\ElevenFiftyProjects\codingFoundations\dotnetProjects\DietBuilderMVC\DietBuilder.Models\obj\Debug\net7.0\ref\DietBuilder.Models.dll
