@@ -9,15 +9,40 @@
         <div class="col-12">
             <h1>@Model.Name</h1>
 
-            <hr/>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalCalories)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalCarbs)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalProtein)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(Item => Model.TotalCalories)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Item => Model.TotalCarbs)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Item => Model.TotalProtein)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr />
 
             <h3>Recipes</h3>
-            
-            <span>
-                Add another recipe <a href="/Meal/@Model.Id/Recipe/Create">here</a>!
-            </span>
-            
-            <br/>
+
+            <br />
 
             @if (Model.Recipes.Any())
             {
@@ -45,6 +70,10 @@
                     }
                     </tbody>
                 </table>
+
+                <span>
+                    Add another recipe <a href="/Meal/@Model.Id/Recipe/Create">here</a>!
+                </span>
             }
             else
             {

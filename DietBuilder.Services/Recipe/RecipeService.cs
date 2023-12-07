@@ -62,7 +62,10 @@ namespace DietBuilder.Services.Recipe
                 .Select(r => new RecipeListItem()
                 {
                     Id = r.Id,
-                    Name = r.Name
+                    Name = r.Name,
+                    Calories = r.Calories,
+                    Carbs = r.Carbs,
+                    Protein = r.Protein
                 }).ToListAsync();
         }
 

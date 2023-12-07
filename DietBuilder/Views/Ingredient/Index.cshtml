@@ -28,7 +28,9 @@
 					</td>
 					<td>
 						<a asp-action="Edit" asp-route-id=@ingredient.Id>Edit</a> |
-						<a asp-action="Delete" asp-route-id=@ingredient.Id>Delete</a>
+						<form action="ingredient/delete/@ingredient.Id" method="post" class="d-inline">
+							<input type="submit" value="Remove" class="btn btn-link p-0" />
+						</form>
 					</td>
 				</tr>
 			}

@@ -10,15 +10,44 @@
 
             <h1>@Model.Name</h1>
 
-            <hr/>
+            <br/>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Calories)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Carbs)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Protein)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(Item => Model.Calories)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Item => Model.Carbs)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Item => Model.Protein)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr />
 
             <h3>Ingredients</h3>
 
             <span>
                 <a href="/Recipe/@Model.Id/Ingredients/Create">Add ingredients to @Model.Name here!</a>
             </span>
-
-            <br/>
 
             @if (Model.RecipeIngredients.Any())
             {

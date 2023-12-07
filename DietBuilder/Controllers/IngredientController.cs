@@ -81,13 +81,13 @@ namespace DietBuilder.Controllers
 			return View(ingredient);
 		}
 
-		[HttpPost]
-		public async Task<IActionResult> Delete(IngredientDetail model)
+		[HttpPost("[controller]/delete/{id}")]
+		public async Task<IActionResult> Delete(int? id)
 		{
 			if (!ModelState.IsValid)
 				return View();
 
-			await _service.DeleteIngredientAsync(model.Id);
+			await _service.DeleteIngredientAsync(id ?? 0);
 
 			return RedirectToAction(nameof(Index));
 		}
